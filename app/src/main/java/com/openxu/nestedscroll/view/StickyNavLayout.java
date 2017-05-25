@@ -144,17 +144,6 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
     }
 
 
-
-    /**是否可以滑动*/
-    public boolean canScroll(){
-        if(getScrollY() < mTopViewHeight){
-            return true;
-        }else if(getScrollY() >= mTopViewHeight){
-            return false;
-        }
-        return true;
-    }
-    public boolean accepteScroll = true;
     //一定要按照自己的需求返回true，该方法决定了当前控件是否能接收到其内部View(非并非是直接子View)滑动时的参数；
     //假设你只涉及到纵向滑动，这里可以根据nestedScrollAxes这个参数，进行纵向判断。
     @Override
@@ -212,7 +201,6 @@ public class StickyNavLayout extends LinearLayout implements NestedScrollingPare
             scrollBy(0, dy);
             consumed[1] = dy;
         }
-
 
     }
     //你可以捕获对内部View的fling事件，如果return true则表示拦截掉内部View的事件

@@ -27,7 +27,7 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingC
     private final int[] consumed = new int[2];
 
     private NestedScrollingChildHelper mScrollingChildHelper;
-    private int lastY;
+    private int lastX, lastY;
 
     public NestedLinearLayout(Context context) {
         this(context, null);
@@ -48,15 +48,39 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingC
             mScrollingChildHelper.setNestedScrollingEnabled(true);
         }
     }
-    StickyNavLayout parent;
+
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if(parent==null)
-            parent = (StickyNavLayout)getParent();
+    public boolean onInterceptTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.w(TAG ,"按下");
                 lastY = (int)event.getRawY();
+                lastX = (int)event.getRawX();
+                // 当开始滑动的时候，告诉父view
+                startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL| ViewCompat.SCROLL_AXIS_VERTICAL);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.w(TAG ,"移动");
+                int y = (int)(event.getRawY());
+                int dy =lastY - y;
+                int dx = lastX - (int)event.getRawX();
+                lastY = y;
+                lastX = (int)event.getRawX();
+                if (startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL) // 如果找到了支持嵌套滚动的父类
+                        && dispatchNestedPreScroll(dx, dy, consumed, offset)) {// 父类进行了一部分滚动
+                }
+                break;
+        }
+        return super.onInterceptTouchEvent(event);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.w(TAG ,"按下");
+                lastY = (int)event.getRawY();
+                lastX = (int)event.getRawX();
                 // 当开始滑动的时候，告诉父view
                 startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL| ViewCompat.SCROLL_AXIS_VERTICAL);
                 return true;
@@ -64,32 +88,12 @@ public class NestedLinearLayout extends LinearLayout implements NestedScrollingC
                 Log.w(TAG ,"移动");
                 int y = (int)(event.getRawY());
                 int dy =lastY - y;
+                int dx = lastX - (int)event.getRawX();
                 lastY = y;
-               /* if(parent.accepteScroll){
-                    if (startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL) // 如果找到了支持嵌套滚动的父类
-                            && dispatchNestedPreScroll(0, dy, consumed, offset)) {// 父类进行了一部分滚动
-                    }
-                }else{
-                    //父控件不接受滑动了，说明化到顶了，如果要向下滑动时，需要判断
-                    if(dy>0){
-                        Log.i(TAG, "向上滑动"+dy);
-                    }else{
-                        Log.i(TAG, "向下滑动"+dy);
-                        parent.accepteScroll = true;
-                        startNestedScroll(ViewCompat.SCROLL_AXIS_HORIZONTAL| ViewCompat.SCROLL_AXIS_VERTICAL);
-                        return true;
-                    }
-                }*/
+                lastX = (int)event.getRawX();
                 if (startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL) // 如果找到了支持嵌套滚动的父类
-                        && dispatchNestedPreScroll(0, dy, consumed, offset)) {// 父类进行了一部分滚动
+                        && dispatchNestedPreScroll(dx, dy, consumed, offset)) {// 父类进行了一部分滚动
                 }
-
-//                if(!parent.accepteScroll && )
-
-               /* if(){
-                    stopNestedScroll();
-                }*/
-
         }
         return super.onTouchEvent(event);
     }

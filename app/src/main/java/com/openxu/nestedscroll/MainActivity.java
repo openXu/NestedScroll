@@ -1,10 +1,13 @@
 package com.openxu.nestedscroll;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.openxu.nestedscroll.adapter.CommonAdapter;
 import com.openxu.nestedscroll.adapter.ViewHolder;
@@ -13,48 +16,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends FragmentActivity{
-	private SwipeRefreshLayout refresh_layout;
-	private RecyclerView id_recycler;
-	private List<String> mDatas = new ArrayList<String>();
+public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		initViews();
-		initDatas();
-		initEvents();
-	}
-	private void initViews(){
-		refresh_layout = (SwipeRefreshLayout) findViewById(R.id.id_refresh_layout);
-		id_recycler = (RecyclerView) findViewById(R.id.id_recycler);
-		id_recycler.setLayoutManager(new LinearLayoutManager(this));
 	}
 
-	private void initEvents(){
-		refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-			@Override
-			public void onRefresh() {
-				//刷新
-				initDatas();
-			}
-		});
-	}
 
-	private void initDatas(){
-		mDatas.clear();
-		for (int i = 0; i < 60; i++){
-			mDatas.add("item -> " + i);
-		}
-		refresh_layout.setRefreshing(false);
-		id_recycler.setAdapter(new CommonAdapter<String>(this, R.layout.item, mDatas){
-			@Override
-			public void convert(ViewHolder holder, String o){
-				holder.setText(R.id.id_info, o);
-			}
-		});
+	public void simple1(View v){
+		startActivity(new Intent(this, SimpleActivity1.class));
 	}
-
+	public void simple2(View v){
+		startActivity(new Intent(this, SimpleActivity2.class));
+	}
+	public void simple3(View v){
+		startActivity(new Intent(this, SimpleActivity3.class));
+	}
 
 }

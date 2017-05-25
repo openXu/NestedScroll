@@ -1,43 +1,28 @@
-<com.openxu.nestedscroll.view.StickyNavLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
+    android:gravity="center_vertical"
     android:orientation="vertical" >
-    <!--第一部分-->
-    <com.openxu.nestedscroll.view.NestedLinearLayout
-        android:id="@+id/id_layout_first"
+
+
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4400ff" >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="256dp"
-            android:gravity="center"
-            android:text="第一部分"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-    </com.openxu.nestedscroll.view.NestedLinearLayout>
-    <!--第二部分-->
-    <com.openxu.nestedscroll.view.NestedLinearLayout
-        android:id="@+id/id_layout_second"
+        android:onClick="simple1"
+        android:text="示例1"/>
+    <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#4400ff00" >
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="80dip"
-            android:text="第二部分"/>
-    </com.openxu.nestedscroll.view.NestedLinearLayout>
-    <!--第三部分-->
-    <android.support.v4.widget.SwipeRefreshLayout
-           android:id="@+id/id_refresh_layout"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
+        android:layout_marginTop="20dp"
+        android:onClick="simple2"
+        android:text="示例2"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="simple3"
+        android:text="示例3"/>
 
-           <android.support.v7.widget.RecyclerView
-               android:id="@+id/id_recycler"
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"/>
-       </android.support.v4.widget.SwipeRefreshLayout>
-
-</com.openxu.nestedscroll.view.StickyNavLayout >
+</LinearLayout >

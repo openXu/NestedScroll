@@ -1,0 +1,48 @@
+<com.openxu.nestedscroll.view.StickyNavLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <!--第一部分-->
+    <com.openxu.nestedscroll.view.NestedLinearLayout
+        android:id="@+id/id_layout_first"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4400ff" >
+        <!--替换第一部分内容-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:gravity="center"
+            android:text="第一部分"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+    </com.openxu.nestedscroll.view.NestedLinearLayout>
+    <!--第二部分-->
+    <com.openxu.nestedscroll.view.NestedLinearLayout
+        android:id="@+id/id_layout_second"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4400ff00" >
+        <!--替换第二部分内容-->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dip"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="第二部分"/>
+    </com.openxu.nestedscroll.view.NestedLinearLayout>
+    <!--第三部分-->
+    <android.support.v4.widget.SwipeRefreshLayout
+           android:id="@+id/id_refresh_layout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/id_recycler"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"/>
+       </android.support.v4.widget.SwipeRefreshLayout>
+
+</com.openxu.nestedscroll.view.StickyNavLayout >

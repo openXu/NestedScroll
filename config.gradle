@@ -1,0 +1,21 @@
+ext {
+    // Sdk and tools
+    minSdkVersion = 15
+    targetSdkVersion = 25
+    compileSdkVersion = 25
+    buildToolsVersion = '25.0.2'
+    sourceCompatibilityVersion = JavaVersion.VERSION_1_8
+    targetCompatibilityVersion = JavaVersion.VERSION_1_8
+    supportLibrariesVersion = '25.2.0'
+
+    dep = [
+//            androidPlugin        : 'com.android.tools.build:gradle:2.3.0',
+            junit                : 'junit:junit:4.10',
+            // Android support 相关库
+            "appcompat-v7"       : "com.android.support:appcompat-v7:$rootProject.supportLibrariesVersion",
+            "design"             : "com.android.support:design:$rootProject.supportLibrariesVersion",
+            "recyclerview-v7"    : "com.android.support:recyclerview-v7:$rootProject.supportLibrariesVersion",
+    ]
+
+    isCi = "true".equals(System.getenv('CI'))
+}

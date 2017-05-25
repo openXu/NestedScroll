@@ -10,7 +10,6 @@ ext {
 
     dep = [
 //            androidPlugin        : 'com.android.tools.build:gradle:2.3.0',
-            junit                : 'junit:junit:4.10',
             // Android support 相关库
             "appcompat-v7"       : "com.android.support:appcompat-v7:$rootProject.supportLibrariesVersion",
             "design"             : "com.android.support:design:$rootProject.supportLibrariesVersion",

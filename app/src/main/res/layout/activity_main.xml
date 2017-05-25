@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="256dp"
             android:gravity="center"
-            android:text="软件介绍"
+            android:text="第一部分"
             android:textSize="30sp"
             android:textStyle="bold" />
     </com.openxu.nestedscroll.view.NestedLinearLayout>
@@ -25,7 +25,8 @@
         android:background="#4400ff00" >
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="80dip"/>
+            android:layout_height="80dip"
+            android:text="第二部分"/>
     </com.openxu.nestedscroll.view.NestedLinearLayout>
     <!--第三部分-->
     <android.support.v4.widget.SwipeRefreshLayout
